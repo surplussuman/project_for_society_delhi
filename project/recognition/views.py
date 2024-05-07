@@ -513,7 +513,7 @@ def dashboard(request):
 
 
 # Inside the login page of Admin
-@login_required
+'''@login_required
 def add_photos(request):
     if request.user.username != 'admin':
         return redirect('not-authorised')
@@ -534,7 +534,7 @@ def add_photos(request):
 
         form = usernameForm()
         return render(request, 'recognition/add_photos.html', {'form': form})
-
+'''
 
 
 '''def mark_your_attendance(request):
@@ -632,7 +632,7 @@ def add_photos(request):
     update_attendance_in_db_in(present)
     return redirect('dashboard')'''
 
-
+'''
 stop_stream_flag_in = False
 show_stream_flag_in = False
 
@@ -654,11 +654,11 @@ vs.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 frame_queue = queue.Queue(maxsize=1)
 
 # Function to read frames and put them into the queue
-'''def read_frames(vs, frame_queue):
+def read_frames(vs, frame_queue):
     while not stop_stream_flag_in:
         frame = vs.read()
         frame = imutils.resize(frame, width=800)
-        frame_queue.put(frame)'''
+        frame_queue.put(frame)
 def read_frames(vs, frame_queue):
     last_frame_time = time.time()
     while vs.isOpened():
@@ -675,9 +675,9 @@ def read_frames(vs, frame_queue):
         if time.time() - last_frame_time > 5:
             logging.error("Timeout: No frames received for 5 seconds")
             break
-
+'''
 # Function to detect faces and mark attendance
-def mark_your_attendance(request):
+'''def mark_your_attendance(request):
     global stop_stream_flag_in, show_stream_flag_in
 
     # Load face recognition model
@@ -785,8 +785,8 @@ def mark_your_attendance(request):
     cv2.destroyAllWindows()
 
     return redirect('dashboard')
-
-def toggle_stream_in(request):
+'''
+'''def toggle_stream_in(request):
     global show_stream_flag_in
     show_stream_flag_in = not show_stream_flag_in
     return HttpResponse("Stream toggled")
@@ -800,7 +800,7 @@ def stop_stream_in(request):
 
 def reset_stop_stream_flag_in():
     global stop_stream_flag_in
-    stop_stream_flag_in = False
+    stop_stream_flag_in = False'''
 
 
 '''
@@ -913,7 +913,7 @@ def mark_your_attendance_out(request):
     return redirect('dashboard')
 '''
 
-stop_stream_flag_out = False
+'''stop_stream_flag_out = False
 show_stream_flag_out = False
 
 mtcnn = MTCNN()
@@ -1042,8 +1042,8 @@ def stop_stream_out(request):
 
 def reset_stop_stream_flag_out():
     global stop_stream_flag_out
-    stop_stream_flag_out = False
-@login_required
+    stop_stream_flag_out = False'''
+'''@login_required
 def train(request):
     if request.user.username != 'admin':
         return redirect('not-authorised')
@@ -1097,13 +1097,13 @@ def train(request):
     messages.success(request, f'Training Completed.')
 
     return render(request, "recognition/train.html")
-
+'''
 
 @login_required
 def not_authorised(request):
     return render(request, 'recognition/not_authorised.html')
 
-
+'''
 @login_required
 def view_attendance_home(request):
     total_num_of_emp = total_number_employees()
@@ -1232,3 +1232,4 @@ def view_my_attendance_employee_login(request):
 
         form = DateForm_2()
         return render(request, 'recognition/view_my_attendance_employee_login.html', {'form': form, 'qs': qs})
+'''
