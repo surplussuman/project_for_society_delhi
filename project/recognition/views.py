@@ -537,55 +537,6 @@ def add_photos(request):
 
 
 
-def send_message_in(person_name):
-    #Twilio
-    SID = 'ACe2993c6d9afd11330e6ba71736696cac'
-    AUTH_TOKEN = 'ce0ae7d5f369d1e97d2139561abfe9ce'
-    client = Client(SID, AUTH_TOKEN)
-
-    mobile_numbers = {
-        'Suman' : '+916383595092',
-        'Akii' : '+918125356941',
-        'RahulPandey' : '+916206419351',
-        'ShivamShivam' : '+918544859338',
-        'KunalKishor' : '+919006612353'
-    }
-    #message_sent = {person_name: False for person_name in mobile_numbers.keys()}
-
-    current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    message = f'Welcome!!! {person_name} your attendance marked at {current_time}'
-    client = Client(SID, AUTH_TOKEN)
-    client.messages.create(
-        body=message,
-        from_='+14052618747',
-        to=mobile_numbers.get(person_name, "")
-    )
-
-def send_message_out(person_name):
-    #Twilio
-    SID = 'ACe2993c6d9afd11330e6ba71736696cac'
-    AUTH_TOKEN = 'ce0ae7d5f369d1e97d2139561abfe9ce'
-    client = Client(SID, AUTH_TOKEN)
-
-    mobile_numbers = {
-        'Suman' : '+916383595092',
-        'Akii' : '+918125356941',
-        'RahulPandey' : '+916206419351',
-        'ShivamShivam' : '+918544859338',
-        'KunalKishor' : '+919006612353'
-    }
-    #message_sent = {person_name: False for person_name in mobile_numbers.keys()}
-
-    current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    message = f'Thank you {person_name} you went out at {current_time}. See you later'
-    client = Client(SID, AUTH_TOKEN)
-    client.messages.create(
-        body=message,
-        from_='+14052618747',
-        to=mobile_numbers.get(person_name, "")
-    )
-
-
 '''def mark_your_attendance(request):
     detector = dlib.get_frontal_face_detector()
 
