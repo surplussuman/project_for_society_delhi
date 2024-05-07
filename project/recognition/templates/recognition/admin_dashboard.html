@@ -1,526 +1,121 @@
 {% load static %}
 {% load crispy_forms_tags %}
-<!--
 <!DOCTYPE html>
 <html>
 <head>
-
-	  <!-- Required meta tags 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-   <style>
-    body{
-      background: url('{% static "recognition/img/admin.png"%}') no-repeat center center fixed;
-      background-size: cover;
-      
-    }
-   
-   </style>
-
-<script  type='text/javascript'
-src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'>
-$(document).ready(function(){
-  $("#train").click(function(){
-    alert("Training begun. This may take upto 5 minutes. Please wait.");
-  });
-});
-</script>
-	
+    <title>Community Web App</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-   <div class="col-lg-12" style="background: rgba(0,0,0,0.6);margin-top:3em;margin-bottom:5em;padding-top:1em;padding-bottom:3em;color:#fff;border-radius:10px;-webkit-box-shadow: 2px 2px 15px 0px rgba(0, 3, 0, 0.7);
--moz-box-shadow:    2px 2px 15px 0px rgba(0, 3, 0, 0.7);
-box-shadow:         2px 2px 15px 0px rgba(0, 3, 0, 0.7);">
- <!--  <div class="col-sm-12"> 
-       <a href="{% url 'logout' %}"><h5 class="text-right"><i class="fa fa-user-circle" aria-hidden="true"></i> Logout</h5></a>
-    </div>
-
-     <div class="col-sm-12">
-      <a href="{% url 'logout' %}"> <h5 class="text-right"><button class="bn30" ><b>Logout</b></button></h5></a>
-    </div>
+    <header>
+        <h1>Community Web App</h1>
+        <div class="navbar">
+            <a href="{% url 'dashboard' %}" class="active">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Contact</a>
+            <a href="{%url 'register' %}" class="register-button">Register</a>
+            <a href="{% url 'login' %}" class="sign-out-button">Sign Out</a>
+        </div>
+    </header>
     
-     <div class="row">
-                <div class="col-md-12 text-center">
-                    
-                        <h5 class="animate-charcter" style="margin-bottom:4em"><b>Welcome Admin </b></h5>
         
-                </div>
-      </div>
-     <style>
-.bn30 {
-  border: 5em;
-  cursor: pointer;
-  outline: none;
-  font-size: 20px;
-  -webkit-transform: translate(0);
-  transform: translate(0);
-  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-  padding: 0.7em 2em;
-  border-radius: 65px;
-  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
-  -webkit-transition: box-shadow 0.25s;
-  transition: box-shadow 0.25s;
-  color: white;
-}
-
-.bn30 .text {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
-}
-
-.bn30:after {
-  content: "";
-  border-radius: 18px;
-  position: absolute;
-  margin: 4px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  background: #0e0e10;
-}
-
-.bn30:hover {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
-  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
-}
-
-.bn30:hover .text {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
-}
-
-
-
-.animate-charcter {
-                text-transform: uppercase;
-                background-image: linear-gradient(-225deg,
-                        #231557 0%,
-                        #f6f4f8 29%,
-                        #ff1361 67%,
-                        #fff800 100%);
-                background-size: auto auto;
-                background-clip: border-box;
-                background-size: 200% auto;
-                color: #fff;
-                background-clip: text;
-                text-fill-color: transparent;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                animation: textclip 2s linear infinite;
-                display: inline-block;
-                font-size: 40px;
-            }
-
-            @keyframes textclip {
-                to {
-                    background-position: 200% center;
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-      h4{
-        margin-bottom: 1.5em;
-        padding-top: 30px;
-
-      }
-      img{
-        border-radius:50%;
-        -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-     transition: all 0.3s ease-in-out;
-      }
-      img:hover{
-       -webkit-box-shadow: 2px 2px 21px 0px rgba(0, 3, 0, 0.91);
-        -moz-box-shadow: 2px 2px 21px 0px rgba(0, 3, 0, 0.91);
-        box-shadow: 2px 2px 21px 0px rgba(0, 3, 0, 0.91);
-        border: 2px solid #fff;
-        transform: scale(1.1);
-        transition: 1s;
-      }
-      h3{
-        margin-bottom: 1.3em;
-      }
-      a{
-        color:inherit
-      }
-      a:hover{
-        color:inherit;
-        text-decoration: none;
-      }
-      /*
-      .section-title:after {
-          content:' ';display:block;margin:0 auto;width:100px;margin-top: 6px;border:2px solid #d0d0d0;border-radius:4px;
-          -webkit-border-radius:4px;
-          -moz-border-radius:4px;
-          box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-          -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-          -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-          margin-bottom:1em;
-        }
-        */
-        .att{
-          padding-right: 150px;
-        }
-        .lgn{
-          padding-right: 80px;
-        }
-    </style>
-
-
-
-
-
-      <div class="row">
-     
-       
-
-           <div class="col-md-3">
-          <a href="{%url 'register' %}"><img src="{% static 'recognition/img/Register.jpeg' %}" class="img-responsive" style="width:300px;height:300px ;" />
-          <div class="row">
-              <div class="col md-3">
-              <h4 class="text-center att"><b>Register New Employees</b></h4>
-        </div></div>
-          </a>
-         
-
-        </div>
-          <div class="col-md-3">
-          <a href="{%url 'add-photos'%}"><img src="{% static 'recognition/img/Capture.jpg' %}" class="img-responsive" style="width:300px;height:300px ;" />
-        <div class="row">
-
-          <div class="col md-3">
-             <h4 class="text-center att"><b>Capture</b></h4>
-        </div></div>
-          </a>
-          
-        </div>
-           <div class="col-md-3">
-          <a href="{%url 'train' %}" id="train" ><img src="{% static 'recognition/img/train.jpg' %}" class="img-responsive" style="width:300px;height:300px ;" />
-         <div class="row">
-          <div class="col md-3">
-           <h4 class="text-center att"><b>Train</b></h4>
-        </div></div>
-          </a>
-          
-        </div>
-        <div class="col-md-3">
-          <a href="{%url 'view-attendance-home' %}"><img src="{% static 'recognition/img/reports.png' %}" class="img-responsive" style="width:300px;height:300px"/>
-          <div class="row">
-
-        <div class="col md-3">
-             <h4 class="text-center lgn"><b>Attendance Reports </b></h4> 
-        </div></div>
-          </a>
-       
-        </div>
-
-        <div class="col-md-4" style="padding-left: 50px;text-align: center">
-                <a href='{%url "mark-your-attendance" %}'><img src="{% static 'recognition/img/face_in.png' %}"
-                        class="img-responsive" style="width:300px;height:300px ;" />
-                         <div class="row">
-
-
-            <div class="col md-3" style="padding-left: 70px;margin-right:60px">
-                <h4 class="text-center "><b>Mark Your Attendance - In</b></h4>
-            </div></div>
-                     </a>
-
-            </div>
-
-        <div class="col-md-4" style="padding-left: 50px;text-align: center">
-                <a href='{%url "mark-your-attendance-out" %}'><img src="{% static 'recognition/img/face_out.webp' %}"
-                        class="img-responsive" style="width:300px;height:300px ;" />
-                      <div class="row">
-
-
-            <div class="col md-3" style="padding-left: 70px;margin-right:60px">
-                <h4 class="text-center "><b>Mark Your Attendance - Out</b></h4>
-            </div></div>
-                    </a>
-
-            </div>
-       
-
-
-
-
-      </div>
-
-
-    -->
-    <!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Dashboard </title>
-        <link rel="stylesheet"
-            href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-      <!--  <link rel="stylesheet" href="style.css"> --> 
-      <script  type='text/javascript'
-        src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'>
-        $(document).ready(function(){
-        $("#train").click(function(){
-        alert("Training begun. This may take upto 5 minutes. Please wait.");
-    });
-});
-</script>
-    </head>
-    
-    <body>
-        <input type="checkbox" name="" id="menu-toggle">
-        <div class="overlay">
-            <label for="menu-toggle">
-            </label>
-        </div>
-    
-        <div class="sidebar">
-            <div class="sidebar-container">
-                <div class="brand">
-                    <h2>
-                        <a href="https://sirusxai.com/" target="_blank"> <span class="lab la-staylinked"></span>
-                            Sirus AI</a>
-                    </h2>
-                </div>
-                <div class="sidebar-avartar">
-                    <div>
-                        <img src="{% static 'recognition/img/Nehru School.jpg' %}" alt="avatar">
-                    </div>
-                    <div class="avartar-info">
-                        <div class="avartar-text">
-                            <h4>Admin </h4>
-                            <small>Designation</small>
-                        </div>
-    
-                    </div>
-                </div>
-                <div class="sidebar-menu">
-                    <ul>
-    
-                        <a href="{% url 'dashboard' %}">
-                            <li>
-                                <div class="run" id="run1">
-                                    <span class="las la-adjust"></span>
-                                    <span>Dashboard</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a href="{%url 'register' %}">
-                            <li>
-                                <div class="run" id="run2">
-                                    <span class="las la-user-plus"></span>
-                                    <span>Register new user</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a href="{%url 'add-photos'%}">
-                            <li>
-                                <div class="run" id="run3">
-                                    <span class="las la-camera-retro"></span>
-                                    <span>capture face</span>
-                                </div>
-                            </li>
-                        </a>
-                        <a href="{%url 'train' %}">
-                            <li id="run4">
-                                <div class="run">
-                                    <span class="las la-brain"></span>
-                                    <span>Train</span>
-                                </div>
-                            </li>
-                        </a>
-                        <li>
-                            <a href="{%url 'view-attendance-home' %}">
-                                <div class="run" id="run5">
-                                    <span class="las la-id-badge"></span>
-                                    <span>view attandence report</span>
-                                </div>
-                        </li></a>
-                        <a href="{% url 'logout' %}"> <li>
-                            <div class="run" id="run6">
-                                <span class="las la-sign-out-alt"></span>
-                                <span> Log out </span>
-                            </div>
-                        </li></a>
-    
-                    </ul>
-                </div>
-                <div class="sidebar-card">
-                    <div class="side-card-icon">
-                        <span class="lab la-codiepie"></span>
-                    </div>
-                    <div>
-                        <h4>Start Cameras</h4>
-                        <p>Run the cameras one after one</p>
-                    </div>
-                  <a href='{%url "mark-your-attendance" %}'>  <button class="btn btn-main btn-block"> Start Camera-in </button><br> </a>
-                 <a href='{%url "mark-your-attendance-out" %}'> <button class="btn btn-main btn-block"> Start Camera-out</button> </a>
-                </div>
-            </div>
-    
-        </div>
-        <!-- main content -->
-        <div class="main-content" id="main-content1">
-            <header>
-                <div class="header-title-wrapper">
-                    <label for="menu-toggle">
-                        <span class="las la-bars"></span>
-                    </label>
-                    <div class="header-title">
-                        <h1>Admin Dashboard</h1>
-                        <p>Overall report of institution <span class="las la-chart-line">
-                            </span></p>
-                    </div>
-                </div>
-                <div class="header-action">
-                    <button class="btn btn-main">
-    
-                        Show and Go
-                    </button>
-                </div>
             </header>
-    
-    
-            <!-- _______________________________________________________________________ END OF HEADER ______________________________________________ --> 
-            <main>
-                <section>
-                    <h3 class="section-head">Overview</h3>
-                    <div class="analytics">
-                        <div class="analytic">
-                            <div class="analytic-icon">
-                                <span class="las la-user-tie"></span>
-                            </div>
-                            <div class="analytic-info">
-                                <h4>Total</h4S>
-                                    <h1><b>{{total_num_of_emp }}</b></h1>
-                            </div>
-                        </div>
-                        <div class="analytic">
-                            <div class="analytic-icon">
-                                <span class="las la-clone"></span>
-                            </div>
-                            <div class="analytic-info">
-                                <h4>Present</h4S>
-                                    <h1>{{emp_present_today }} <small class="text-danger">{{emp_present_percent}}% </small></h1>
-                            </div>
-                        </div>
-                        <div class="analytic">
-                            <div class="analytic-icon">
-                                <span class="las la-user"></span>
-                            </div>
-                            <div class="analytic-info">
-                                <h4>Absent </h4S>
-                                    <h1>{{emp_absent_today }} <small class="text-absent">{{emp_absent_percent}}%</small></h1>
-                            </div>
-                        </div>
-                        <div class="analytic">
-                            <div class="analytic-icon">
-                                <span class="las la-user-clock"></span>
-                            </div>
-                            <div class="analytic-info">
-                                <h4>Total</h4S>
-                                    <h1>{{days_used}} Days</h1>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-    
-    
-                <section>
-    
-                    <div class="block-grid">
-                        <div class="revenue-card">
-                            <h3 class="section-head"></h3>
-                            <div class="rev-content">
-                                <img src="{% static 'recognition/img/Nehru School.jpg' %}" alt="" />
-                                <div class="rev-sum">
-                                    <h4><b>Nehru Memorial Nursery and Primary School</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button onclick="stopStreamIn()">Stop Stream of In camera</button>
-
-                    <script>
-                    function stopStreamIn() {
-                        fetch('/stop_stream_in/')
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                return response.text();
-                            })
-                            .then(data => {
-                                console.log(data);
-                            })
-                            .catch(error => {
-                                console.error('There was a problem with your fetch operation:', error);
-                            });
-                    }
-                    </script>
-                    
-                    <button onclick="toggleStreamIn()">Show Live Stream of In Camera </button>
-                    <script>
-                        function toggleStreamIn() {
-                            fetch('/toggle_stream_in/')
-                                .then(response => response.text())
-                                .then(data => console.log(data));
-                        }
-                    </script>
-
-<button onclick="stopStream()">Stop Stream of Out camera</button>
-
-<script>
-function stopStream() {
-    fetch('/stop_stream_out/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('There was a problem with your fetch operation:', error);
-        });
-}
-</script>
-
-<button onclick="toggleStream()">Show Live Stream of Out Camera </button>
-<script>
-    function toggleStream() {
-        fetch('/toggle_stream_out/')
-            .then(response => response.text())
-            .then(data => console.log(data));
-    }
-</script>
-
-
-                </section>
-    
-            </main>
+    <main>
+        <div class="container">
+        <section class="box">
+            <h2>News and Announcements</h2>
+            <ul>
+                <li>Community BBQ this Saturday!</li>
+                <li>Reminder: Board Meeting on Monday</li>
+            </ul>
+        </section>
+        
+        <section class="box">
+            <h2>Community Calendar</h2>
+            <p>Upcoming Events:</p>
+            <ul>
+                <li>Yoga in the Park - July 20th</li>
+                <li>Neighborhood Cleanup - August 5th</li>
+            </ul>
+        </section>
+        <section class="box">
+            <h2>Classifieds Section</h2>
+            <p>Items for Sale:</p>
+            <ul>
+                <li>Bike - $100</li>
+                <li>Furniture - Best Offer</li>
+            </ul>
+        </section>
+        <section class="box">
+            <h2>Local Services Directory</h2>
+            <p>Recommended Services:</p>
+            <ul>
+                <li>Electrician - John's Electric</li>
+                <li>Plumber - Smith Plumbing</li>
+            </ul>
+            <button>Book Service</button>
+        </section>
+        <section class="box">
+            <h2>Emergency Contact Information</h2>
+            <p>For emergencies, call 911.</p>
+            <button>Call Emergency</button>
+        </section>
+        <section class="box">
+            <h2>Compliance Management</h2>
+            <p>Upcoming Deadlines:</p>
+            <ul>
+                <li>Insurance Renewal - 15th July 2024</li>
+                <li>Renovation Approval - 30th August 2024</li>
+            </ul>
+        </section>
+        <section class="box">
+            <h2>Polls and Surveys</h2>
+            <p>Current Poll:</p>
+            <ul>
+                <li>Favorite Community Event?</li>
+                <li>Best Local Restaurant?</li>
+            </ul>
+            <button>Vote Now</button>
+        </section>
+        <section class="box">
+            <h2>Document Repository</h2>
+            <p>Important Documents:</p>
+            <ul>
+                <li>Community Bylaws</li>
+                <li>Meeting Minutes</li>
+            </ul>
+        </section>
+        <section class="box">
+            <h2>Volunteer Opportunities</h2>
+            <p>Current Opportunities:</p>
+            <ul>
+                <li>Community Garden Maintenance</li>
+                <li>Charity Fundraiser Planning</li>
+            </ul>
+            <button>Volunteer Now</button>
+        </section>
+        <section class="box">
+            <h2>Local Services Directory</h2>
+            <p>Recommended Services:</p>
+            <ul>
+                <li>Electrician - John's Electric</li>
+                <li>Plumber - Smith Plumbing</li>
+                <li>Gardener - Green Thumb Landscaping</li>
+            </ul>
+            <button>Book Service</button>
+        </section>
         </div>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            <!-- Add more social icons as needed -->
+        </div>
+        <p>&copy; 2024 Community Name. All rights reserved.</p>
+    </footer>
+
 
  {% if messages %}
       {% for message in messages%}
@@ -539,704 +134,102 @@ function stopStream() {
 </body>
 </html>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-:root {
-    --color-main: #396aff;
-    --bg: #fbfefd;
-    --bg2: #dce5ff;
-    --main-accent: #e9eefd;
-    --main-text: #4b5876;
-    --shadow: rgba(17, 17, 26, 0.1) 2px 2px 16px;
-    --hover: rgba(174, 164, 164, 0.319);
-}
-
-* {
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    list-style-type: none;
-    box-sizing: border-box;
-
-}
-
+    /* Basic styling */
 body {
-    background: var(--bg);
-    overflow: hidden;
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    color: #333;
 }
-
-#menu-toggle {
-    display: none;
-}
-
-#menu-toggle:checked~.sidebar {
-    left: -345px;
-}
-
-#menu-toggle:checked~.main-content {
-    margin-left: 0;
-    width: 100vw;
-}
-
-#menu-toggle:checked~.main-content0 {
-    margin-left: 0;
-    width: 100vw;
-}
-
-img {
-    width: 100%;
-    height: auto;
-    border-radius: 40px;
-
-
-}
-
-.sidebar {
-    width: 345px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    padding: 1rem 1.2rem;
-    transition: left 300ms;
-
-}
-
-.sidebar-container {
-    height: 100%;
-    width: 100%;
-    background: var(--bg);
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    overflow-y: auto;
-    padding: 1.2rem;
-}
-
-.sidebar-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.sidebar-container::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-}
-
-.sidebar-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.brand h2 {
-    color: #444;
-}
-
-.brand h2 span {
-    color: var(--color-main);
-    font-size: 2.5rem;
-    display: inline-block;
-    margin-right: .5rem;
-}
-
-.sidebar-avartar {
-    display: grid;
-    grid-template-columns: 70px auto;
-    align-items: center;
-    border: 2px solid var(--main-accent);
-    padding: .1rem .7rem;
-    border-radius: 7px;
-    margin: 2rem 0rem;
-}
-
-.avartar-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.sidebar-menu li {
-    margin-bottom: .2rem;
-    cursor: pointer;
-
-}
-
-.sidebar-menu .run {
-    color: var(--main-text);
-    display: block;
-    padding: .7rem 0rem;
-}
-
-.sidebar-menu .run:hover {
-    background-color: var(--hover);
-}
-
-.sidebar-menu .run {
-    background-color: var(--main-accent);
-    padding: .7rem;
-    border-radius: 10px;
-}
-
-.sidebar-menu .run span:first-child {
-    display: inline-block;
-    margin-right: .8rem;
-    font-size: 1.5rem;
-    columns: var(--color-main);
-}
-
-.sidebar-card {
-    background: var(--main-accent);
-    box-shadow: var(--shadow);
-    text-align: center;
-    padding: 1rem;
-    border-radius: 15px;
-    margin-top: 2rem;
-}
-
-.side-card-icon span {
-    font-size: 8rem;
-    color: var(--color-main);
-    display: inline-block;
-}
-
-.side-card-icon {
-    margin-bottom: .8rem;
-}
-
-.side-card-icon+div {
-    margin-bottom: 1.2rem;
-}
-
-.side-card-icon+div p {
-    font-size: 1.2rem;
-    columns: #555;
-}
-
-.btn {
-    padding: .7rem 1rem;
-    border: none;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.btn span {
-    font-size: 1.2rem;
-    display: inline-block;
-    margin-right: .7rem;
-}
-
-.btn-block {
-    display: block;
-    width: 100%;
-}
-
-.btn-main {
-    background: var(--color-main);
-    color: #fff;
-}
-
-/*              main containt                      */
-
-.main-content {
-    margin-left: 345px;
-    width: calc(100vw - 345px);
-    padding: 1rem 1.2rem;
-    padding-right: 2rem;
-    transition: margin-left 300ms;
-    
-
-}
-
 header {
-    display: flex;
-    justify-content: space-between;
-    padding-top: .5rem;
-
-
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }
-
-.header-title-wrapper {
-    display: flex;
-}
-
-.header-title-wrapper label {
-    display: inline-block;
-    color: var(--color-main);
-    margin-right: 1rem;
-    font-size: 1.8rem;
-}
-
-.header-title h1 {
-    color: var(--main-text);
-    font-weight: 600;
-}
-
-.header-title p {
-    color: #666;
-    font-size: .9rem;
-}
-
-.header-title p span {
-    color: red;
-    font-size: 1.2rem;
-    display: inline-block;
-    margin-left: .5rem;
-}
-
-.header-action button {
-    padding: .85rem 2rem;
-    font-size: 1rem;
-}
-
-main {
-    padding: 2.5rem;
-    padding-bottom: 2.5rem;
-}
-
-.analytics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 2.5rem;
-    margin-bottom: 3rem;
-
-}
-
-.analytic {
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    border-radius: 10px;
-    display: flex;
-    padding-left: 2rem;
-
-}
-
-.analytic-info h4 {
-    font-weight: 400;
-    color: #555;
-    font-size: .98rem;
-
-}
-
-.analytic-info h1 {
-    color: var(--main-text);
-    font-weight: 600;
-}
-
-.analytic-info h1 small {
-    font-weight: 700;
-    font-size: .8rem;
-
-}
-
-.text-danger {
-    color: #2ec3a3;
-
-}
-
-.text-absent {
-    color: red;
-}
-
-.text-main {
-    color: var(--color-main);
-}
-
-.analytic:first-child .analytic-icon {
-    background: #dce5ff;
-    color: #6883db;
-}
-
-.analytic-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    margin-right: .8rem;
-}
-
-.analytic:first-child .analytic-icon {
-    background: #dce5ff;
-    color: #6883db;
-}
-
-.analytic:nth-child(2) .analytic-icon {
-    background: #ebf7f5;
-    color: #2ec3a3;
-}
-
-.analytic:nth-child(3) .analytic-icon {
-    background: #ebf7f5;
-    color: red;
-}
-
-.analytic:nth-child(4) .analytic-icon {
-    background: var(--main-accent);
-    color: var(--color-main);
-}
-
-.section-head {
-    font-size: 1.4rem;
-    color: var(--main-text);
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.block-grid {
-    display: grid;
-    grid-template-columns: 30% auto;
-    grid-gap: 3rem;
-}
-
-.rev-content {
-    background: #fff;
-    box-shadow: var(--shadow);
-    border-radius: 15px;
-    padding: 1rem 2rem;
-    text-align: center;
-}
-
-.rev-content img {
-    width: px;
-    margin: 1.5rem 0rem;
-    border-radius: 10px;
-}
-
-.rev-info {
-    margin-bottom: 1rem;
-}
-
-.rev-info h3,
-.rev-info h1 {
-    font-weight: 600;
-    color: var(--main-text);
-}
-
-.rev-info h1 {
-    font-weight: 600;
-    margin-top: .2rem;
-}
-
-.rev-info h1 {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #555;
-}
-
-.rev-sum {
-    background: var(--main-accent);
-    border: 1px solid var(--color-main);
-    padding: 1rem;
-    border-radius: 10px;
-}
-
-.rev-sum h4 {
-    color: #555;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-
-}
-
-.rev-sum h2 {
-    font-weight: 600;
-    color: var(--main-text);
-}
-
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    display: none;
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.overlay label {
-    display: block;
-    height: 100%;
-    width: 100%;
-}
-
-@media only screen and (min-width: 1224px) {
-    body {
-        background: var(--bg);
-        overflow: visible;
-
-    }
-}
-
-@media only screen and (max-width: 1224px) {
-    body {
-        background: var(--bg);
-        overflow: visible;
-
-    }
-
-    .sidebar {
-        left: -345px;
-        z-index: 30;
-    }
-
-    .main-content {
-        width: 100vw;
-        margin-left: 0;
-    }
-
-    .main-content0 {
-        width: 100vw;
-        margin-left: 0;
-    }
-
-    #menu-toggle:checked~.sidebar {
-        left: 0;
-    }
-
-    #menu-toggle:checked~.sidebar {
-        left: 0;
-    }
-
-    #menu-toggle:checked~.overlay {
-        display: block;
-        text-align: right;
-    }
-}
-
-@media only screen and (max-width: 860px) {
-    body {
-        background: var(--bg);
-        overflow: visible;
-
-    }
-
-    .analytics {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .block-grid {
-        grid-template-columns: 100%;
-    }
-
-    .revenue-card {
-        order: 2;
-    }
-}
-
-@media only screen and (max-width: 580px) {
-    body {
-        background: var(--bg);
-        overflow: visible;
-
-    }
-
-    .analytics {
-        grid-template-columns: 100%;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-
-    header,
-    .header-title-wrapper {
-        align-items: center;
-    }
-
-    .header-title h1 {
-        font-size: 1.2rem;
-    }
-
-    .header-title p {
-        display: none;
-    }
-}
-
-/* }----------------css for new registration-------------------- */
 .container {
-    animation: container 2s ease 0s 1 normal forwards;
-}
-
-
-
-@keyframes container {
-    0% {
-        animation-timing-function: ease-in;
-        opacity: 1;
-        transform: translateY(-45px);
-    }
-
-    24% {
-        opacity: 1;
-    }
-
-    40% {
-        animation-timing-function: ease-in;
-        transform: translateY(-24px);
-    }
-
-    65% {
-        animation-timing-function: ease-in;
-        transform: translateY(-12px);
-    }
-
-    82% {
-        animation-timing-function: ease-in;
-        transform: translateY(-6px);
-    }
-
-    93% {
-        animation-timing-function: ease-in;
-        transform: translateY(-4px);
-    }
-
-    25%,
-    55%,
-    75%,
-    87% {
-        animation-timing-function: ease-out;
-        transform: translateY(0px);
-    }
-
-    100% {
-        animation-timing-function: ease-out;
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-
-
-
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    margin: 3rem auto;
-    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two boxes per row */
+    gap: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 20px 10px 20px 10px#396bff9f;
-
 }
-
-
-.form-group h1 {
-    text-align: center;
-    color: #396bffbb;
-    margin-bottom: 1rem;
+.box {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    flex: 0 0 calc(33.33% - 20px);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    transition: transform 0.3s;
 }
-
-label,
-input,
-button {
-    display: block;
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-.error-message {
-    color: red;
-    font-size: 14px;
+footer {
+    background-color: white;
+    color: #333;
+    text-align: center  ;
+    padding: 10px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
-
-
-.iclass {
-    text-align: center;
-    color: #396bffbb;
+.social-icons {
+    margin-left: 20px;
+    float: right;
 }
-
-.iclass i {
-    border: 2px solid #396bffbb;
-    padding: 1.5rem;
-    font-size: 4rem;
-    border-radius: 50%;
-
+.social-icons a {
+    display: inline-block;
+    margin-right: 10px;
 }
-
-.input {
+.navbar {
     display: flex;
-
+    justify-content: flex-end;
+    align-items: center;
 }
-
-.input i {
-    opacity: 0.5;
-    font-size: 1rem;
+.navbar a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
 }
-
-.input label {
-    margin-left: 1rem;
+.navbar a.active {
+    font-weight: bold;
+    color: #007bff;
 }
-
-
-input {
-    margin-bottom: 1rem;
+.register-button,
+.sign-out-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    transition: background-color 0.3s;
+}
+.register-button:hover,
+.sign-out-button:hover {
+    background-color: #0056b3;
+}
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
     border: none;
-    outline: none;
-    background: none;
-    padding: 0.5rem 0.7rem;
-    font-size: 1rem;
-    color: #555;
-    border-bottom: 2px solid rgba(90, 88, 88, 0.612);
-}
-
-
-/* .container button {
-background-color: var(--color-main);
-color: white;
-padding: 10px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}  */
-.container button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    border-radius: 25px;
-    outline: none;
-    border: none;
-    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
-
-    background-size: 200%;
-    font-size: 1.2rem;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 1rem 0;
+    border-radius: 5px;
     cursor: pointer;
-    transition: .5s;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #0056b3;
 }
 
-.container button:hover {
-    background-position: right;
-}
-
-.container:hover {
-    transform: scale(1.5);
-    transition: 0.5s;
-    box-shadow: 0 15px 25px #396bff9f;
-}
-
-.note {
-    color: rgba(255, 0, 0, 0.67);
-    
-}
-.note p{
-    font-size: small;
-}
-
-@media only screen and (max-width: 1000px) {
-   .container{
-    width: 100%;
-   }
-}
 </style>
-
 
