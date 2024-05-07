@@ -1,0 +1,16 @@
+django
+django-crispy-forms
+django-cors-headers
+django-phonenumber-field
+phonenumbers
+opencv-python
+dlib @ file:///C:/Users/kakar/Downloads/dlib-19.22.99-cp310-cp310-win_amd64.whl
+imutils
+face-recognition
+scikit-learn
+matplotlib
+django-pandas
+seaborn
+twilio
+crispy-bootstrap4
+facenet-pytorch
