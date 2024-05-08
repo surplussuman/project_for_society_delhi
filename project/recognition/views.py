@@ -17,6 +17,7 @@ def username_present(username):
     return False
 
 
+
 def total_number_employees():
     qs = User.objects.all()
     return (len(qs) - 1)
